@@ -1,3 +1,19 @@
-<p>
-  main works!
-</p>
+<main>
+    <input
+
+            type="number"
+            min="0"
+            placeholder="Select Ethereum"
+            (change)="handleCurrencyUpdate()"
+            [(ngModel)]="currencyPrice.eth"
+    />
+
+    <section>
+        Ethereurm: {{currencyPrice?.eth}}
+        USD: {{currencyPrice?.usd}}
+        HKD: {{currencyPrice?.hkd}}
+    </section>
+
+
+</main>
+

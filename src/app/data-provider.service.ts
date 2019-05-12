@@ -7,11 +7,16 @@ import {Observable} from 'rxjs';
 })
 export class DataProviderService {
 
-    converterEndpoint = 'https://api.coinmarketcap.com/v1/ticker/ethereum';
+    endpoint = 'http://localhost:8080/currency';
+    currencyRateEndpoint = 'https://api.exchangeratesapi.io/latest';
 
-    getConversionData(): Observable<any> {
-        return this.http.get('https://api.coinmarketcap.com/v1/ticker/ethereum/');
+    getCurrencyConversionData(): Observable<any> {
+        return this.http.get(this.endpoint);
     }
+    getCurrencyRateEndpoint(): Observable<any> {
+        return this.http.get(this.currencyRateEndpoint);
+    }
+
 
     constructor(private http: HttpClient) {
     }
