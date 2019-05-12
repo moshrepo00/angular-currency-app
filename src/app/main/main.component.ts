@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DataProviderService} from '../data-provider.service';
 import {mergeMap} from 'rxjs/operators';
+import {Price} from '../price';
+import * as moment from 'moment';
 
 
 @Component({
@@ -8,30 +10,38 @@ import {mergeMap} from 'rxjs/operators';
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss']
 })
+
+
 export class MainComponent implements OnInit {
 
-    currencyPrice = {
+    dataLoaded: boolean;
+    currencyPrice: Price = {
         eth: 10,
-        hkd: '',
-        usd: ''
+        usd: 0,
+        hkd: 0
     };
+    cryptoLastUpdated;
+    currencyRateDate;
 
     getCurrencyData(): void {
         this.dataProv.getCurrencyConversionData()
             .pipe(
                 mergeMap((convData) => {
                     console.log(convData);
-                    this.currencyPrice.usd = convData[0].price_usd;
+                    this.currencyPrice.usd = convData[0].price_usd * this.currencyPrice.eth;
+                    this.cryptoLastUpdated = moment.unix(convData[0].last_updated).format('LLLL');
                     return this.dataProv.getCurrencyRateEndpoint();
                 }))
             .subscribe((rateData) => {
+                this.currencyPrice.hkd = this.currencyPrice.usd * rateData.rates.HKD;
+                this.currencyRateDate = moment(rateData.date, 'YYYY-MM-DD').format('DD MMM YYYY');
+                this.dataLoaded = true;
                 console.log(rateData);
             });
     }
 
     handleCurrencyUpdate() {
-
-        console.log('currency update');
+        this.getCurrencyData();
     }
 
     constructor(private dataProv: DataProviderService) {

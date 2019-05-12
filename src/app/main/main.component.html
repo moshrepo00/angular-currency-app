@@ -1,4 +1,4 @@
-<main>
+<main *ngIf="dataLoaded">
     <input
 
             type="number"
@@ -9,9 +9,23 @@
     />
 
     <section>
-        Ethereurm: {{currencyPrice?.eth}}
-        USD: {{currencyPrice?.usd}}
-        HKD: {{currencyPrice?.hkd}}
+        <div>
+            Ethereurm: {{currencyPrice?.eth}}
+            USD: {{currencyPrice?.usd}}
+            HKD: {{currencyPrice?.hkd}}
+        </div>
+        <div>
+            Last Updated: {{cryptoLastUpdated}}
+        </div>
+        <div>
+            <div>
+                Currency exchange rates for today ({{currencyRateDate}})
+            </div>
+            <div>
+                1 Eth = 10 usd
+                1Eth = 7 usd
+            </div>
+        </div>
     </section>
 
 
