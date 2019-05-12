@@ -24,6 +24,7 @@ export class MainComponent implements OnInit {
     currencyRateDate;
 
     getCurrencyData(): void {
+        this.dataProv.showLoader = true;
         this.dataProv.getCurrencyConversionData()
             .pipe(
                 mergeMap((convData) => {
@@ -36,11 +37,12 @@ export class MainComponent implements OnInit {
                 this.currencyPrice.hkd = this.currencyPrice.usd * rateData.rates.HKD;
                 this.currencyRateDate = moment(rateData.date, 'YYYY-MM-DD').format('DD MMM YYYY');
                 this.dataLoaded = true;
+                this.dataProv.showLoader = false;
                 console.log(rateData);
             });
     }
 
-    handleCurrencyUpdate() {
+    handleCurrencyUpdate(): void {
         this.getCurrencyData();
     }
 
