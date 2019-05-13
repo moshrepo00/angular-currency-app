@@ -23,6 +23,8 @@ export class MainComponent implements OnInit {
     cryptoLastUpdated;
     exchangeRate: number;
     currencyRateDate;
+    url = '';
+
 
     getCurrencyData(): void {
         this.dataProv.showLoader = true;
@@ -46,6 +48,18 @@ export class MainComponent implements OnInit {
 
     handleCurrencyUpdate(): void {
         this.getCurrencyData();
+    }
+
+    onSelectFile(event) {
+        if (event.target.files && event.target.files[0]) {
+            const reader = new FileReader();
+
+            reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+            reader.onload = (e: any) => { // called once readAsDataURL is completed
+                this.url = e.target.result;
+            };
+        }
     }
 
     constructor(private dataProv: DataProviderService) {
