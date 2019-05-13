@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 export class DataProviderService {
 
     endpoint = 'http://localhost:8080/currency';
-    currencyRateEndpoint = 'https://api.exchangeratesapi.io/latest';
+    currencyRateEndpoint = 'https://api.exchangeratesapi.io/latest?base=USD';
     showLoader: boolean;
 
     getCurrencyConversionData(): Observable<any> {

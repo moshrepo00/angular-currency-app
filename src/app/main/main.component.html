@@ -1,29 +1,62 @@
-<main *ngIf="dataLoaded">
-    <input
+<main class="home-component" [hidden]="!dataLoaded">
+    <section class="container">
+        <h1 class="title">
+            Currency Exchange App
+        </h1>
+        <!--<label for="ethereum"></label>-->
+        <div class="content">
+            <form>
+                <div class="form-group">
+                    <mat-form-field>
+                        <input
+                                matInput
+                                id="ethereum"
+                                name="ethereum"
+                                type="number"
+                                min="0"
+                                step="0.1"
+                                placeholder="Select Ethereum"
+                                (input)="getCurrencyData()"
+                                [(ngModel)]="currencyPrice.eth"
+                        />
+                    </mat-form-field>
+                </div>
+            </form>
 
-            type="number"
-            min="0"
-            placeholder="Select Ethereum"
-            (change)="handleCurrencyUpdate()"
-            [(ngModel)]="currencyPrice.eth"
-    />
-
-    <section>
-        <div>
-            Ethereurm: {{currencyPrice?.eth}}
-            USD: {{currencyPrice?.usd}}
-            HKD: {{currencyPrice?.hkd}}
-        </div>
-        <div>
-            Last Updated: {{cryptoLastUpdated}}
-        </div>
-        <div>
             <div>
-                Currency exchange rates for today ({{currencyRateDate}})
-            </div>
-            <div>
-                1 Eth = 10 usd
-                1Eth = 7 usd
+                <h3 class="form-title">
+                    Currency Conversion Results:
+                </h3>
+                <div class="result-container">
+                    <p class="last-updated">
+                        Last Updated: {{cryptoLastUpdated}}
+                    </p>
+                    <div class="currency-results">
+                        <div class="currency">
+                            {{currencyPrice?.eth | number : '1.5'}}
+                            <span class="category">ETH </span>
+                        </div>
+                        <div class="currency">
+                            {{currencyPrice?.usd | number : '1.5'}}
+                            <span class="category">USD </span>
+                        </div>
+                        <div class="currency">
+                            {{currencyPrice?.hkd | number : '1.5'}}
+                            <span class="category">HKD </span>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="form-title exchange">
+                    Currency Exchange Rates:
+                </h3>
+                <div class="rates">
+                    <div class="last-updated">
+                        Date: {{currencyRateDate}}
+                    </div>
+                    <div class="currency">
+                        1 USD = {{exchangeRate | number : '1.5'}}
+                    </div>
+                </div>
             </div>
         </div>
     </section>

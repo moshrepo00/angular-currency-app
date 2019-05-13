@@ -1,3 +1,65 @@
-p {
-  color: green;
+.home-component {
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: 'Roboto';
+}
+
+.container {
+  margin: 20px 0;
+  border-radius: 5px;
+  background: white;
+}
+
+.title {
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 1px solid #276492;
+}
+
+
+.content {
+  padding: 20px;
+}
+
+.form-group {
+  text-align: center;
+  padding: 0 0 10px 0;
+}
+
+.currency-results {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-title {
+  padding-bottom: 10px;
+}
+
+.currency {
+  color: #d43b64;
+}
+
+.last-updated {
+  color: #9c3bd4;
+}
+
+.result-container {
+  padding: 10px;
+  border-radius: 5px;
+  background: #e3e037;
+}
+
+.category {
+  font-weight: bold;
+}
+
+.exchange {
+  margin-top: 20px;
+}
+
+.rates {
+  background: #1edfe6;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataProviderService} from '../data-provider.service';
-import {mergeMap} from 'rxjs/operators';
+import {mergeMap, timeInterval} from 'rxjs/operators';
 import {Price} from '../price';
 import * as moment from 'moment';
 
@@ -21,6 +21,7 @@ export class MainComponent implements OnInit {
         hkd: 0
     };
     cryptoLastUpdated;
+    exchangeRate: number;
     currencyRateDate;
 
     getCurrencyData(): void {
@@ -36,6 +37,7 @@ export class MainComponent implements OnInit {
             .subscribe((rateData) => {
                 this.currencyPrice.hkd = this.currencyPrice.usd * rateData.rates.HKD;
                 this.currencyRateDate = moment(rateData.date, 'YYYY-MM-DD').format('DD MMM YYYY');
+                this.exchangeRate = rateData.rates.HKD;
                 this.dataLoaded = true;
                 this.dataProv.showLoader = false;
                 console.log(rateData);
@@ -47,11 +49,15 @@ export class MainComponent implements OnInit {
     }
 
     constructor(private dataProv: DataProviderService) {
+        this.getCurrencyData();
+        setInterval(() => {
+                this.getCurrencyData();
+            },
+            120000);
     }
 
 
     ngOnInit() {
-        this.getCurrencyData();
     }
 
 }
