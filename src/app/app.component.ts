@@ -10,6 +10,6 @@ import {DataProviderService} from './data-provider.service';
 export class AppComponent {
     title = 'currency-converter';
 
-    constructor(private dataProv: DataProviderService) {
+    constructor(public dataProv: DataProviderService) {
     }
 }
