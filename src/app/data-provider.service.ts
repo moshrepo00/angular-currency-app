@@ -8,12 +8,12 @@ import {Observable} from 'rxjs';
 export class DataProviderService {
 
     // endpoint = 'https://coinapinodewrapper.herokuapp.com/currency';
-    endpoint = 'http://localhost:8080/currency';
+    endpoint = 'http://localhost:8080';
     currencyRateEndpoint = 'https://api.exchangeratesapi.io/latest?base=USD';
     showLoader: boolean;
 
     getCurrencyConversionData(): Observable<any> {
-        return this.http.get(this.endpoint);
+        return this.http.get(this.endpoint + '/currency');
     }
 
     getCurrencyRateEndpoint(): Observable<any> {
