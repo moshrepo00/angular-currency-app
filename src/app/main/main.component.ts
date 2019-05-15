@@ -58,8 +58,11 @@ export class MainComponent implements OnInit {
 
             reader.onload = (e: any) => { // called once readAsDataURL is completed
                 this.url = e.target.result;
+                console.log('image path', this.url);
             };
         }
+        this.dataProv.postImage(event)
+            .subscribe(data => console.log('user posted', data));
     }
 
     constructor(private dataProv: DataProviderService) {
