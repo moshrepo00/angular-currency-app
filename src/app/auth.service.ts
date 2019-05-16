@@ -27,14 +27,13 @@ export class AuthService {
         return this.http.post(`${this.dataProv.endpoint}/auth/sign_in`, JSON.stringify(reqBody), headers);
     }
 
-    signUp(email, password, firstName, lastName) {
-        const headers = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
-        const reqBody = {
-            email: email,
-            password: password,
-            firstName: firstName,
-            lastName: lastName
-        };
-        return this.http.post(`${this.dataProv.endpoint}/auth/register`, JSON.stringify(reqBody), headers);
+    signUp(firstName, lastName, email, file) {
+        const fd = new FormData();
+        const selectedFile = file.target.files[0];
+        fd.append('firstName', firstName);
+        fd.append('lastName', lastName);
+        fd.append('email', email);
+        fd.append('image', selectedFile, selectedFile.name);
+        return this.http.post(`${this.dataProv.endpoint}/user/create`, fd);
     }
 }

@@ -20,7 +20,7 @@ export class DataProviderService {
         return this.http.get(this.currencyRateEndpoint);
     }
 
-    postImage(event): Observable<any> {
+    postSignUpForm(event): Observable<any> {
         const fd = new FormData();
         const selectedFile = event.target.files[0];
         fd.append('image', selectedFile, selectedFile.name);
