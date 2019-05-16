@@ -10,13 +10,15 @@ import {MatButtonModule, MatCheckboxModule, MatFormFieldModule} from '@angular/m
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         MainComponent,
-        LoaderComponent
+        LoaderComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,
