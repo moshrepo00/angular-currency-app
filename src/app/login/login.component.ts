@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
         firstName: '',
         lastName: '',
         email: '',
+        password: ''
     };
     selectedFile: any;
 
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     signUpSubmit() {
         console.log('sign up');
-        this.auth.signUp(this.signUpFormObj.firstName, this.signUpFormObj.lastName, this.signUpFormObj.email, this.selectedFile)
+        this.auth.signUp(this.signUpFormObj.firstName, this.signUpFormObj.lastName, this.signUpFormObj.email, this.selectedFile, this.signUpFormObj.password)
             .subscribe(data => {
                 console.log(data);
             });
@@ -54,7 +55,6 @@ export class LoginComponent implements OnInit {
 
             reader.onload = (e: any) => { // called once readAsDataURL is completed
                 this.url = e.target.result;
-                console.log('image path', this.url);
             };
         }
     }

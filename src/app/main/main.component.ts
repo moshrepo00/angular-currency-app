@@ -61,16 +61,11 @@ export class MainComponent implements OnInit {
                 console.log('image path', this.url);
             };
         }
-        this.dataProv.postImage(event)
-            .subscribe(data => console.log('user posted', data));
+
     }
 
     constructor(private dataProv: DataProviderService) {
         this.getCurrencyData();
-        setInterval(() => {
-                this.getCurrencyData();
-            },
-            120000);
     }
 
 
