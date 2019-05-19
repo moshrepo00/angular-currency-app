@@ -1,0 +1,21 @@
+<form (ngSubmit)="signUpSubmit()">
+  <label for="first_name">First Name</label>
+  <input type="text" name="first_name" id="first_name" [(ngModel)]="signUpFormObj.firstName">
+
+  <label for="last_name">Last Name</label>
+  <input type="text" name="last_name" id="last_name" [(ngModel)]="signUpFormObj.lastName">
+
+  <label for="signup_email">Email</label>
+  <input type="text" name="signup_email" id="signup_email" [(ngModel)]="signUpFormObj.email">
+
+  <label for="avatar">Profile Picture</label>
+  <input type='file' id="avatar" (change)="onSelectFile($event)">
+
+  <label for="signup_password">Password</label>
+  <input type="password" name="signup_password" id="signup_password" [(ngModel)]="signUpFormObj.password">
+
+  <button type="submit">
+    Sign Up
+  </button>
+
+</form>
