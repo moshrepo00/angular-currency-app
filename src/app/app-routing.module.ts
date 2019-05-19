@@ -4,6 +4,7 @@ import {MainComponent} from './main/main.component';
 import {FormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
+import {AuthGuard} from './auth.guard';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
     },
     {
         path: 'main',
-        component: MainComponent
+        component: MainComponent,
+        canActivate: [AuthGuard]
     }
 ];
 
