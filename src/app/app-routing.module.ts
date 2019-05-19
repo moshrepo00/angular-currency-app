@@ -5,6 +5,8 @@ import {FormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {AuthGuard} from './auth.guard';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {JwtInterceptor} from './jwt.interceptor';
 
 
 const routes: Routes = [
@@ -33,7 +35,10 @@ const routes: Routes = [
     exports: [
         RouterModule,
         FormsModule
-    ]
+    ],
+    providers: [{
+        provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
+    }]
 })
 export class AppRoutingModule {
 }
