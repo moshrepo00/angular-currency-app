@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from '@angular/common/http';
+import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
 
@@ -15,6 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (token) {
             request = request.clone({
                 setHeaders: {
+                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 }
             });

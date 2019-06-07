@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {DataProviderService} from '../data-provider.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -15,13 +16,17 @@ export class LoginComponent implements OnInit {
         password: ''
     };
 
-    constructor(public dataProv: DataProviderService, public auth: AuthService) {
+    constructor(private router: Router, public dataProv: DataProviderService, public auth: AuthService) {
     }
 
     loginSubmit() {
         this.auth.login(this.loginFormObj.email, this.loginFormObj.password)
-            .subscribe(data => {
-                console.log(data);
+            .subscribe(loginData => {
+                const token = loginData.token;
+                if (token) {
+                    this.auth.setToken(loginData.token);
+                    this.router.navigate(['/main']);
+                }
             });
     }
 
