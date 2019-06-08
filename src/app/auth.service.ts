@@ -19,6 +19,10 @@ export class AuthService {
         return localStorage.getItem('Token');
     }
 
+    logout() {
+        localStorage.removeItem('Token');
+    }
+
     login(email: string, password: string) {
         const headers = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
         const reqBody = {

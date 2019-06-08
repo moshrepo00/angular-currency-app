@@ -3,6 +3,8 @@ import {DataProviderService} from '../data-provider.service';
 import {mergeMap, timeInterval} from 'rxjs/operators';
 import {Price} from '../price';
 import * as moment from 'moment';
+import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -64,7 +66,12 @@ export class MainComponent implements OnInit {
 
     }
 
-    constructor(private dataProv: DataProviderService) {
+    logout() {
+        this.auth.logout();
+        this.router.navigate(['/login']);
+    }
+
+    constructor(private dataProv: DataProviderService, public auth: AuthService, private router: Router) {
         this.getCurrencyData();
     }
 
